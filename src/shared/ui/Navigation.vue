@@ -9,6 +9,9 @@
         <router-link to="/todo" class="nav-link" active-class="active">
           Tasks
         </router-link>
+        <router-link to="/fund" class="nav-link" active-class="active">
+          Funds
+        </router-link>
       </div>
     </div>
   </nav>

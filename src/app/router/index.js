@@ -11,6 +11,11 @@ const routes = [
     name: 'Todo',
     component: () => import('/src/pages/todo/index.vue'),
   },
+  {
+    path: '/fund',
+    name: 'Fund',
+    component: () => import('@/pages/fund/fund-list/ui/fund-list.page.vue'),
+  },
 ];
 
 const router = createRouter({
