@@ -11,7 +11,7 @@
     </div>
     <div class="task-actions">
       <span class="task-date">{{ formatDate(task.createdAt) }}</span>
-      <Button @click="deleteTask" class="delete-btn">Delete</Button>
+      <Button @click="deleteTask" class="delete-btn" v-if="$can('perform', 'FundDelete')">Delete</Button>
     </div>
   </div>
 </template>

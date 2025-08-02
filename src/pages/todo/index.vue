@@ -1,8 +1,15 @@
 <template>
   <div class="todo-page">
     <h1>To-Do List</h1>
-    <AddTask />
-    <FilterTasks />
+    <AddTask v-if="$can('perform', 'FundAdd')" />
+
+    <FilterTasks v-if="$can('perform', 'FundFilter')" />
+    <div style="margin-bottom: 10px" v-else>
+      <h3 style="color: brown">
+        you just can add or see task list not filtering them
+      </h3>
+      <p>Please contact support for promoting you to admin for access.</p>
+    </div>
 
     <div class="task-list">
       <div v-if="taskStore.filteredTasks.length === 0" class="empty-state">

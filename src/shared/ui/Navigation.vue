@@ -6,10 +6,20 @@
         <router-link to="/" class="nav-link" active-class="active">
           Home
         </router-link>
-        <router-link to="/todo" class="nav-link" active-class="active">
+        <router-link
+          to="/todo"
+          class="nav-link"
+          active-class="active"
+          v-if="$can('access', 'Todo')"
+        >
           Tasks
         </router-link>
-        <router-link to="/fund" class="nav-link" active-class="active">
+        <router-link
+          to="/fund"
+          class="nav-link"
+          active-class="active"
+          v-if="$can('access', 'Fund')"
+        >
           Funds
         </router-link>
       </div>
