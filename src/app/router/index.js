@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { useAbility } from '@/shared/composables/useAbility';
 
 const routes = [
   {
@@ -21,6 +22,16 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const { canAccess } = useAbility();
+
+  if (!canAccess(to.name)) {
+    return next('/'); // or a 403 page
+  }
+
+  next();
 });
 
 export default router;

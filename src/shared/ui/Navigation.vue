@@ -6,16 +6,31 @@
         <router-link to="/" class="nav-link" active-class="active">
           Home
         </router-link>
-        <router-link to="/todo" class="nav-link" active-class="active">
+        <router-link
+          to="/todo"
+          class="nav-link"
+          active-class="active"
+          v-if="canAccess('Todo')"
+        >
           Tasks
         </router-link>
-        <router-link to="/fund" class="nav-link" active-class="active">
+        <router-link
+          to="/fund"
+          class="nav-link"
+          active-class="active"
+          v-if="canAccess('Fund')"
+        >
           Funds
         </router-link>
       </div>
     </div>
   </nav>
 </template>
+
+<script setup>
+import { useAbility } from '@/shared/composables/useAbility';
+const { canAccess } = useAbility();
+</script>
 
 <style scoped>
 .navigation {

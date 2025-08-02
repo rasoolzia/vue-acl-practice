@@ -11,7 +11,12 @@
     </div>
     <div class="task-actions">
       <span class="task-date">{{ formatDate(task.createdAt) }}</span>
-      <Button @click="deleteTask" class="delete-btn">Delete</Button>
+      <Button
+        @click="deleteTask"
+        class="delete-btn"
+        v-if="canPerform('FundDelete')"
+        >Delete</Button
+      >
     </div>
   </div>
 </template>
@@ -19,6 +24,7 @@
 <script>
 import Button from '@/shared/ui/Button.vue';
 import { taskStore } from '@/shared/lib/store.js';
+import { useAbility } from '@/shared/composables/useAbility';
 
 export default {
   name: 'TaskItem',
@@ -30,6 +36,7 @@ export default {
     },
   },
   setup(props) {
+    const { canPerform } = useAbility();
     const toggleTask = () => {
       taskStore.toggleTask(props.task.id);
     };
@@ -44,6 +51,7 @@ export default {
     };
 
     return {
+      canPerform,
       toggleTask,
       deleteTask,
       formatDate,
