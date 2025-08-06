@@ -10,7 +10,7 @@
           to="/todo"
           class="nav-link"
           active-class="active"
-          v-if="canAccess('Todo')"
+          v-if="$can('access', 'Todo')"
         >
           Tasks
         </router-link>
@@ -18,7 +18,7 @@
           to="/fund"
           class="nav-link"
           active-class="active"
-          v-if="canAccess('Fund')"
+          v-if="$can('access', 'Fund')"
         >
           Funds
         </router-link>
@@ -29,7 +29,6 @@
 
 <script setup>
 import { useAbility } from '@/shared/composables/useAbility';
-const { canAccess } = useAbility();
 </script>
 
 <style scoped>

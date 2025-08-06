@@ -14,49 +14,35 @@
       <Button
         @click="deleteTask"
         class="delete-btn"
-        v-if="canPerform('FundDelete')"
-        >Delete</Button
+        v-if="$can('perform', 'FundDelete')"
       >
+        Delete
+      </Button>
     </div>
   </div>
 </template>
 
-<script>
-import Button from '@/shared/ui/Button.vue';
+<script setup>
 import { taskStore } from '@/shared/lib/store.js';
-import { useAbility } from '@/shared/composables/useAbility';
+import Button from '@/shared/ui/Button.vue';
 
-export default {
-  name: 'TaskItem',
-  components: { Button },
-  props: {
-    task: {
-      type: Object,
-      required: true,
-    },
+const props = defineProps({
+  task: {
+    type: Object,
+    required: true,
   },
-  setup(props) {
-    const { canPerform } = useAbility();
-    const toggleTask = () => {
-      taskStore.toggleTask(props.task.id);
-    };
+});
+const toggleTask = () => {
+  taskStore.toggleTask(props.task.id);
+};
 
-    const deleteTask = () => {
-      taskStore.deleteTask(props.task.id);
-    };
+const deleteTask = () => {
+  taskStore.deleteTask(props.task.id);
+};
 
-    const formatDate = (dateString) => {
-      const date = new Date(dateString);
-      return date.toLocaleDateString();
-    };
-
-    return {
-      canPerform,
-      toggleTask,
-      deleteTask,
-      formatDate,
-    };
-  },
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString();
 };
 </script>
 

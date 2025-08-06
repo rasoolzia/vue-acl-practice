@@ -5,11 +5,11 @@ const user = reactive({
   role: 'user',
 });
 
-export function useAbility() {
-  const abilities = computed(
-    () => defineAclRules[user.role] || defineAclRules['guest'],
-  );
+const abilities = computed(
+  () => defineAclRules[user.role] || defineAclRules['guest'],
+);
 
+export function useAbility() {
   const canAccess = (route) => {
     return abilities.value.routes.includes(route);
   };

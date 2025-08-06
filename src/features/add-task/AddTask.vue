@@ -10,36 +10,20 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
-import Input from '@/shared/ui/Input.vue';
-import Button from '@/shared/ui/Button.vue';
+<script setup>
 import { taskStore } from '@/shared/lib/store.js';
+import Button from '@/shared/ui/Button.vue';
+import Input from '@/shared/ui/Input.vue';
+import { ref } from 'vue';
 
-export default {
-  name: 'AddTask',
-  components: { Input, Button },
-  setup() {
-    const newTaskText = ref('');
-    const taskInput = ref(null);
+const newTaskText = ref('');
+const taskInput = ref(null);
 
-    const addTask = () => {
-      if (newTaskText.value.trim()) {
-        taskStore.addTask(newTaskText.value);
-        newTaskText.value = '';
-        // Focus back to input for better UX
-        // if (taskInput.value) {
-        //   taskInput.value.focus();
-        // }
-      }
-    };
-
-    return {
-      newTaskText,
-      taskInput,
-      addTask,
-    };
-  },
+const addTask = () => {
+  if (newTaskText.value.trim()) {
+    taskStore.addTask(newTaskText.value);
+    newTaskText.value = '';
+  }
 };
 </script>
 

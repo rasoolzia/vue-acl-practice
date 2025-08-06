@@ -5,15 +5,8 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Navigation from '@/shared/ui/Navigation.vue';
-
-export default {
-  name: 'App',
-  components: {
-    Navigation,
-  },
-};
 </script>
 
 <style scoped>

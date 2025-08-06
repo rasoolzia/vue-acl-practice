@@ -28,28 +28,16 @@
   </div>
 </template>
 
-<script>
-import Button from '@/shared/ui/Button.vue';
+<script setup>
 import { taskStore } from '@/shared/lib/store.js';
+import Button from '@/shared/ui/Button.vue';
 
-export default {
-  name: 'FilterTasks',
-  components: { Button },
-  setup() {
-    const setFilter = (filter) => {
-      taskStore.setFilter(filter);
-    };
+const setFilter = (filter) => {
+  taskStore.setFilter(filter);
+};
 
-    const clearCompleted = () => {
-      taskStore.clearCompleted();
-    };
-
-    return {
-      taskStore,
-      setFilter,
-      clearCompleted,
-    };
-  },
+const clearCompleted = () => {
+  taskStore.clearCompleted();
 };
 </script>
 

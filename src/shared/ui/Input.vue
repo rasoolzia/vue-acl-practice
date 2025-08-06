@@ -1,23 +1,12 @@
 <template>
-  <input
-    class="input"
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
-    v-bind="$attrs"
-  />
+  <input class="input" v-model="modelValue" v-bind="$attrs" />
 </template>
 
-<script>
-export default {
-  name: 'Input',
-  props: {
-    modelValue: {
-      type: String,
-      default: '',
-    },
-  },
-  emits: ['update:modelValue'],
-};
+<script setup>
+const modelValue = defineModel({
+  type: String,
+  default: '',
+});
 </script>
 
 <style scoped>

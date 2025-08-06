@@ -1,9 +1,9 @@
 <template>
   <div class="todo-page">
     <h1>To-Do List</h1>
-    <AddTask v-if="canPerform('FundAdd')" />
+    <AddTask v-if="$can('perform', 'FundAdd')" />
 
-    <FilterTasks v-if="canPerform('FundFilter')" />
+    <FilterTasks v-if="$can('perform', 'FundFilter')" />
     <div style="margin-bottom: 10px" v-else>
       <h3 style="color: brown">
         you just can add or see task list not filtering them
@@ -36,24 +36,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import TaskItem from '@/entities/task/TaskItem.vue';
 import AddTask from '@/features/add-task/AddTask.vue';
 import FilterTasks from '@/features/filter-tasks/FilterTasks.vue';
-import TaskItem from '@/entities/task/TaskItem.vue';
 import { taskStore } from '@/shared/lib/store.js';
-import { useAbility } from '@/shared/composables/useAbility';
-
-export default {
-  name: 'TodoPage',
-  components: { AddTask, FilterTasks, TaskItem },
-  setup() {
-    const { canPerform } = useAbility();
-    return {
-      taskStore,
-      canPerform,
-    };
-  },
-};
 </script>
 
 <style scoped>
